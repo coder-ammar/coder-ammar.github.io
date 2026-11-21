@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>عمار خيري — مطوّر برمجيات: تطبيقات، ألعاب، ذكاء اصطناعي، ويب</title>
+<meta name="description" content="عمار خيري، مطوّر برمجيات متعدد التخصصات: تطبيقات Android على Google Play، ألعاب Unity ثلاثية الأبعاد، أنظمة ذكاء اصطناعي وأتمتة، وتطوير ويب وSEO تقني.">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="dark light">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_AR">
+<meta property="og:title" content="عمار خيري — مطوّر برمجيات">
+<meta property="og:description" content="منتجات رقمية كاملة: تطبيقات Android، ألعاب Unity، أتمتة بالذكاء الاصطناعي، وويب.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"عمار خيري","alternateName":"Ammar Khairy","jobTitle":"Software Developer","email":"mailto:ammar.krsan@gmail.com","knowsAbout":["Flutter","Unity","Python","React","TypeScript","Docker","Linux","Technical SEO","Generative AI"],"sameAs":["https://github.com/coder-ammar","https://play.google.com/store/apps/developer?id=AbuIbrahem","https://www.bandoads.com/"]}
+</script>
+<script>
+(function(){
+  try{
+    var t=localStorage.getItem("theme");
+    if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);
+    var l=localStorage.getItem("lang");
+    if(l==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}
+  }catch(e){}
+  document.documentElement.classList.add("js");
+})();
+</script>
+<style>
+:root{
+  --bg:#0B0B0C;--s:#141416;--tx:#F2F2EE;--mu:#8A8A8E;--ln:rgba(255,255,255,.09);
+  --ac:#E85D3F;--ease:cubic-bezier(.16,1,.3,1);
+  --font-ar:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,sans-serif;
+  --font-en:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+:root[data-theme="light"]{
+  --bg:#F5F4F0;--s:#ECEAE4;--tx:#111111;--mu:#5C5C60;--ln:rgba(0,0,0,.1);--ac:#C4452A;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  margin:0;background:var(--bg);color:var(--tx);
+  font:400 17px/1.9 var(--font-ar);
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  overflow-x:hidden;
+}
+html[lang="en"] body{font-family:var(--font-en);line-height:1.75}
+body.lock{overflow:hidden}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono);direction:ltr;unicode-bidi:isolate;font-size:13px;letter-spacing:.02em}
+.w{max-width:1120px;margin:0 auto;padding:0 clamp(18px,4vw,40px)}
+h1,h2,h3{margin:0;font-weight:600}
+:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+
+/* Interactive Engineering Grid Canvas */
+#bg-grid{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;opacity:.9;
+}
+header,main,#toast{position:relative;z-index:2}
+
+/* Header & Navigation */
+header{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--ln);
+  padding-top:env(safe-area-inset-top,0px);
+}
+.progress{
+  position:absolute;bottom:-1px;inset-inline-start:0;height:1.5px;width:100%;
+  background:var(--ac);transform-origin:inline-start;transform:scaleX(0);
+  pointer-events:none;will-change:transform;
+}
+html[dir="rtl"] .progress{transform-origin:right}
+html[dir="ltr"] .progress{transform-origin:left}
+.bar{display:flex;align-items:center;gap:24px;height:64px}
+.brand{font-weight:700;font-size:18px;letter-spacing:-.01em;white-space:nowrap}
+
+/* Magnetic Sliding Nav */
+.nav{position:relative;display:flex;align-items:center;gap:6px;font-size:15px;color:var(--mu);margin-inline-end:auto}
+.nav a{
+  position:relative;padding:7px 14px;border-radius:99px;
+  transition:color .3s var(--ease);z-index:1;
+}
+.nav a:hover,.nav a.active{color:var(--tx)}
+.nav-ind{
+  position:absolute;top:50%;left:0;height:34px;border-radius:99px;
+  background:var(--s);border:1px solid var(--ln);
+  transform:translate3d(0,-50%,0);opacity:0;
+  transition:transform .45s var(--ease),width .45s var(--ease),opacity .3s ease;
+  pointer-events:none;z-index:0;
+}
+.nav-ind.show{opacity:1}
+
+.status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mu);white-space:nowrap}
+.dot{width:7px;height:7px;border-radius:50%;background:#26b63d;box-shadow:0 0 0 3px rgba(38,182,61,.18);animation:p 2.8s ease-in-out infinite;}
+@keyframes p{50%{opacity:.35}}
+
+.actions{display:flex;align-items:center;gap:8px}
+.ib{
+  height:36px;min-width:36px;padding:0 10px;display:inline-grid;place-items:center;
+  background:none;border:1px solid var(--ln);border-radius:99px;
+  color:var(--tx);cursor:pointer;font-family:var(--font-mono);font-size:12px;font-weight:500;
+  transition:border-color .25s var(--ease),color .25s var(--ease),background .25s var(--ease);
+}
+.ib:hover{border-color:var(--ac);color:var(--ac)}
+.ib.sq{padding:0;width:36px}
+.ib svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.sun{display:none}:root[data-theme="light"] .sun{display:block}:root[data-theme="light"] .moon{display:none}
+#mb{display:none}
+
+/* Off-Canvas Mobile Sidebar Drawer */
+.backdrop{
+  position:fixed;inset:0;z-index:50;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .4s var(--ease);
+}
+.backdrop.open{opacity:1;pointer-events:auto}
+.drawer{
+  position:fixed;top:0;bottom:0;inset-inline-end:0;z-index:60;
+  width:min(84vw,340px);
+  background:var(--bg);border-inline-start:1px solid var(--ln);
+  padding:calc(20px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px));
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .5s var(--ease);will-change:transform;
+}
+html[dir="rtl"] .drawer{transform:translateX(-100%)}
+html[dir="ltr"] .drawer{transform:translateX(100%)}
+.drawer.open{transform:translateX(0)!important}
+.dr-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--ln)}
+.dr-nav{display:flex;flex-direction:column;margin:24px 0 auto}
+.dr-nav a{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:18px 0;border-bottom:1px solid var(--ln);font-size:22px;font-weight:500;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease),color .2s;
+}
+.dr-nav a:hover{color:var(--ac)}
+.drawer.open .dr-nav a{opacity:1;transform:none}
+.drawer.open .dr-nav a:nth-child(1){transition-delay:.08s}
+.drawer.open .dr-nav a:nth-child(2){transition-delay:.14s}
+.drawer.open .dr-nav a:nth-child(3){transition-delay:.20s}
+.drawer.open .dr-nav a:nth-child(4){transition-delay:.26s}
+.dr-foot{padding-top:18px;border-top:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--mu)}
+
+/* Hero */
+.hero{padding:clamp(64px,12vw,140px) 0 0}
+.eyebrow{color:var(--mu);margin-bottom:28px}
+h1{font-size:clamp(2.4rem,6vw,4.8rem);line-height:1.15;font-weight:700;letter-spacing:-.02em;max-width:15ch}
+h1 em{font-style:normal;color:var(--ac)}
+.lede{max-width:54ch;color:var(--mu);margin:32px 0 64px;font-size:18px}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);background:color-mix(in srgb,var(--bg) 75%,transparent)}
+.strip div{padding:18px 0;border-inline-start:1px solid var(--ln);padding-inline-start:20px}
+.strip div:first-child{border:0;padding-inline-start:0}
+.strip span{display:block;color:var(--mu);font-size:12px;margin-bottom:2px}
+.strip b{font-weight:500;font-size:15px}
+
+/* Sections */
+section{padding:clamp(72px,10vw,128px) 0 0}
+.sh{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ln);padding-bottom:14px;margin-bottom:0}
+.sh h2{font-size:15px;font-weight:500;color:var(--mu)}
+
+/* Works */
+.idx{list-style:none;margin:0;padding:0}
+.row{
+  display:grid;grid-template-columns:64px 1.1fr 1.5fr 1fr 40px;
+  gap:24px;align-items:start;padding:30px 12px;border-bottom:1px solid var(--ln);
+  transition:background .35s var(--ease);
+}
+a.row:hover{background:color-mix(in srgb,var(--s) 88%,transparent)}
+.row .n{color:var(--ac);padding-top:6px}
+.row h3{font-size:clamp(22px,2.6vw,30px);line-height:1.3}
+.row .t{color:var(--mu);margin-top:6px;display:block}
+.row p{margin:0;color:var(--mu);font-size:16px;line-height:1.85}
+.row .st{font-size:13px;line-height:1.9;padding-top:4px}
+.go{justify-self:end;padding-top:8px;color:var(--mu)}
+.go svg,.links svg{
+  width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .35s var(--ease);
+}
+.links svg{width:18px;height:18px}
+a.row:hover .go{color:var(--ac)}
+html[dir="rtl"] a.row:hover .go svg,html[dir="rtl"] .links a:hover svg{transform:translate(-3px,-3px)}
+html[dir="ltr"] .go svg,html[dir="ltr"] .links svg{transform:scaleX(-1)}
+html[dir="ltr"] a.row:hover .go svg,html[dir="ltr"] .links a:hover svg{transform:translate(3px,-3px) scaleX(-1)}
+.wip{font-size:12px;justify-self:end;padding-top:10px;color:var(--mu);white-space:nowrap}
+.row.lead h3{font-size:clamp(26px,3.4vw,40px)}
+
+/* Capabilities */
+.cap{display:grid;grid-template-columns:repeat(4,1fr)}
+.cap div{padding:28px 22px 32px;border-inline-start:1px solid var(--ln);border-bottom:1px solid var(--ln)}
+.cap div:first-child{border-inline-start:0;padding-inline-start:0}
+.cap h3{font-size:16px;margin-bottom:16px}
+.cap ul{list-style:none;margin:0;padding:0;font-size:13px;line-height:2.1;color:var(--mu)}
+.cap li{direction:ltr;text-align:start}
+html[dir="rtl"] .cap li{text-align:right}
+html[dir="ltr"] .cap li{text-align:left}
+
+/* About */
+.about{display:grid;grid-template-columns:1fr 2fr;gap:40px;padding-top:36px}
+.about h2{font-size:clamp(26px,3.4vw,40px);line-height:1.3;position:sticky;top:96px;align-self:start}
+.about p{margin:0 0 22px;max-width:58ch;font-size:18px}
+.about p+p{color:var(--mu)}
+
+/* Contact */
+.contact h2{font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.15;font-weight:700;max-width:14ch;margin:36px 0 40px}
+.mail{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-bottom:40px}
+.mail a.addr{font-size:clamp(18px,3vw,28px);font-family:var(--font-mono);direction:ltr;border-bottom:1px solid var(--ac);padding-bottom:2px}
+.btn{
+  font:500 14px inherit;color:var(--tx);background:none;border:1px solid var(--ln);
+  border-radius:99px;padding:8px 18px;cursor:pointer;transition:border-color .2s,color .2s;
+}
+.btn:hover{border-color:var(--ac);color:var(--ac)}
+.links{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--ln)}
+.links a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 16px;border-bottom:1px solid var(--ln);transition:color .2s,background .2s;
+}
+.links a:first-child{padding-inline-start:4px}
+.links a:not(:first-child){border-inline-start:1px solid var(--ln)}
+.links a:hover{color:var(--ac);background:color-mix(in srgb,var(--s) 88%,transparent)}
+footer{margin-top:96px;border-top:1px solid var(--ln);padding:22px 0 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:var(--mu);font-size:13px}
+
+#toast{
+  position:fixed;bottom:calc(24px + env(safe-area-inset-bottom,0px));left:50%;
+  transform:translate(-50%,20px);background:var(--tx);color:var(--bg);
+  padding:9px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;
+  transition:all .4s var(--ease);z-index:70;
+}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .nav,.status{display:none}#mb{display:inline-grid}.bar{gap:12px}.brand{margin-inline-end:auto}
+  .row{grid-template-columns:40px 1fr 32px;gap:6px 14px;padding:26px 4px}
+  .row .n{grid-row:1}.row>div:nth-child(2){grid-column:2}.go,.wip{grid-column:3;grid-row:1}
+  .row p,.row .st{grid-column:2/4}.row .st{padding-top:2px}
+  .cap{grid-template-columns:1fr 1fr}.cap div:nth-child(odd){border-inline-start:0;padding-inline-start:0}
+  .about{grid-template-columns:1fr;gap:20px}.about h2{position:static}
+  .strip{grid-template-columns:1fr}.strip div{border:0;border-bottom:1px solid var(--ln);padding:14px 0}.strip div:last-child{border:0}
+}
+@media (max-width:520px){
+  .cap{grid-template-columns:1fr}.cap div{border-inline-start:0;padding-inline-start:0}
+  .links{grid-template-columns:1fr}.links a{padding:18px 4px}.links a:not(:first-child){border-inline-start:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{transition:none!important;animation:none!important}
+  .js .rv{opacity:1;transform:none}#bg-grid{display:none}
+}
+</style>
+</head>
+<body>
+<canvas id="bg-grid" aria-hidden="true"></canvas>
+
+<header>
+  <div class="w">
+    <div class="bar">
+      <a class="brand" href="#top" data-i18n="brand">عمار خيري</a>
+      <nav class="nav" id="dnav" aria-label="التنقل الرئيسي">
+        <span class="nav-ind" id="nind" aria-hidden="true"></span>
+        <a href="#works" data-i18n="nav_works">الأعمال</a>
+        <a href="#stack" data-i18n="nav_stack">القدرات</a>
+        <a href="#about" data-i18n="nav_about">نبذة</a>
+        <a href="#contact" data-i18n="nav_contact">تواصل</a>
+      </nav>
+      <div class="status"><span class="dot" aria-hidden="true"></span><span data-i18n="status">متاح للعمل والمشاريع</span></div>
+      <div class="actions">
+        <button class="ib" id="lg" type="button" aria-label="Switch language">EN</button>
+        <button class="ib sq" id="tg" type="button" aria-label="تبديل الوضع الداكن والفاتح">
+          <svg class="moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5z"/></svg>
+          <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
+        </button>
+        <button class="ib sq" id="mb" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="dr">
+          <svg viewBox="0 0 24 24"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="progress" id="prog" aria-hidden="true"></div>
+</header>
+
+<div class="backdrop" id="bd" aria-hidden="true"></div>
+<aside class="drawer" id="dr" aria-label="قائمة الجوال" aria-hidden="true">
+  <div class="dr-head">
+    <span class="brand" data-i18n="brand">عمار خيري</span>
+    <button class="ib sq" id="cl" type="button" aria-label="إغلاق القائمة">
+      <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <nav class="dr-nav">
+    <a href="#works"><span data-i18n="nav_works">الأعمال</span><span class="mono">01</span></a>
+    <a href="#stack"><span data-i18n="nav_stack">القدرات</span><span class="mono">02</span></a>
+    <a href="#about"><span data-i18n="nav_about">نبذة</span><span class="mono">03</span></a>
+    <a href="#contact"><span data-i18n="nav_contact">تواصل</span><span class="mono">04</span></a>
+  </nav>
+  <div class="dr-foot">
+    <div class="status" style="display:flex"><span class="dot" aria-hidden="true"></span><span data-i18n="status">متاح للعمل والمشاريع</span></div>
+    <span class="mono">2026</span>
+  </div>
+</aside>
+
+<main id="top">
+  <div class="w">
+    <div class="hero">
+      <p class="eyebrow mono rv">PORTFOLIO — 2026</p>
+      <h1 class="rv" data-i18n-html="hero_h1">أبني المنتج كاملاً، من الفكرة حتى <em>المتجر</em>.</h1>
+      <p class="lede rv" data-i18n="hero_lede">مطوّر برمجيات متعدد التخصصات. أنشر تطبيقات Android على Google Play، وأطوّر ألعاباً ثلاثية الأبعاد بـ Unity، وأبني أنظمة ذكاء اصطناعي وأتمتة، وأعمل على الويب وSEO التقني.</p>
+      <div class="strip rv">
+        <div><span data-i18n="s_loc_l">الموقع</span><b data-i18n="s_loc_v">سوريا</b></div>
+        <div><span data-i18n="s_foc_l">التخصصات</span><b data-i18n="s_foc_v">تطبيقات · ألعاب · ذكاء اصطناعي · ويب</b></div>
+        <div><span data-i18n="s_env_l">بيئة العمل</span><b class="mono">Linux · Docker</b></div>
+      </div>
+    </div>
+
+    <section id="works">
+      <div class="sh"><h2 data-i18n="sec_works">أعمال مختارة</h2><span class="mono" style="color:var(--mu)">05 PROJECTS</span></div>
+      <ol class="idx">
+
+        <li class="rv"><a class="row lead" href="https://play.google.com/store/apps/details?id=com.abuibrahem.lera_calculator" target="_blank" rel="noopener">
+          <span class="n mono">01</span>
+          <div><h3 data-i18n="p1_t">ليرتي</h3><span class="t mono">ANDROID APP · GOOGLE PLAY</span></div>
+          <p data-i18n="p1_d">مشكلة حقيقية بعد تغيير العملة السورية: الناس تحتاج التحويل بين الليرة القديمة والجديدة بدقة وسرعة. التطبيق مجاني، يحوّل بين العملتين، ويعرض سعر صرف الدولار مقابل الليرتين بتحديثات فورية.</p>
+          <span class="st mono">Flutter · API</span>
+          <span class="go"><svg viewBox="0 0 24 24"><path d="M17 17L7 7M16 7H7v9"/></svg></span>
+        </a></li>
+
+        <li class="rv"><a class="row" href="https://play.google.com/store/apps/details?id=com.abuibrahem.muratib" target="_blank" rel="noopener">
+          <span class="n mono">02</span>
+          <div><h3 data-i18n="p2_t">مُرتب</h3><span class="t mono">ANDROID APP · GOOGLE PLAY</span></div>
+          <p data-i18n="p2_d">يحل فوضى التخزين والملفات المكررة بنقرة واحدة: يفرز الصور والفيديوهات والمستندات وملفات PDF تلقائياً في مجلدات، ويكشف الملفات الكبيرة لتوفير المساحة، مع فرز سريع للقطات الشاشة بالسحب للحفظ أو الحذف. خفيف ويعمل بالكامل دون إنترنت.</p>
+          <span class="st mono">Flutter · Offline Storage</span>
+          <span class="go"><svg viewBox="0 0 24 24"><path d="M17 17L7 7M16 7H7v9"/></svg></span>
+        </a></li>
+
+        <li class="rv"><div class="row">
+          <span class="n mono">03</span>
+          <div><h3>The Last Core</h3><span class="t mono">3D GAME · UNITY URP</span></div>
+          <p data-i18n="p3_d">لعبة بقاء ورعب ثلاثية الأبعاد للموبايل، مبنية على خط Universal Render Pipeline لتحقيق توازن بين الإضاءة والأجواء والأداء السلس على الأجهزة المحمولة.</p>
+          <span class="st mono">Unity · URP · C#</span>
+          <span class="wip mono">IN DEV</span>
+        </div></li>
+
+        <li class="rv"><div class="row">
+          <span class="n mono">04</span>
+          <div><h3 data-i18n="p4_t">أتمتة دبلجة الفيديو</h3><span class="t mono">AI AUTOMATION</span></div>
+          <p data-i18n="p4_d">خط إنتاج برمجي يسحب الفيديوهات من منصات مختلفة، ويعالج الصوت ويدبلجه تلقائياً باستخدام نماذج الذكاء الاصطناعي، ثم يجهّز المخرجات للنشر على يوتيوب.</p>
+          <span class="st mono">Python · AI APIs</span>
+          <span class="wip mono">IN DEV</span>
+        </div></li>
+
+        <li class="rv"><a class="row" href="https://www.bandoads.com/" target="_blank" rel="noopener">
+          <span class="n mono">05</span>
+          <div><h3 data-i18n="p5_t">باندو أدس</h3><span class="t mono">WEB PLATFORM</span></div>
+          <p data-i18n="p5_d">منصة سورية للإعلانات المبوّبة، تتضمن لوحة تحكم ونظام إدارة شامل ومنفصل لكل مستخدم، مع بنية SEO تقنية مهيأة للظهور في محركات البحث.</p>
+          <span class="st mono">React · TypeScript · APIs · DB · SEO</span>
+          <span class="go"><svg viewBox="0 0 24 24"><path d="M17 17L7 7M16 7H7v9"/></svg></span>
+        </a></li>
+
+      </ol>
+    </section>
+
+    <section id="stack">
+      <div class="sh"><h2 data-i18n="sec_stack">القدرات والمنظومة التقنية</h2><span class="mono" style="color:var(--mu)">STACK</span></div>
+      <div class="cap rv">
+        <div><h3 data-i18n="c1">التطبيقات والألعاب</h3><ul><li>Google Play Publishing</li><li>Unity 3D (URP)</li><li>Flutter</li></ul></div>
+        <div><h3 data-i18n="c2">البرمجة والأنظمة</h3><ul><li>Python · C++</li><li>TypeScript · JavaScript · React</li><li>HTML / CSS · WordPress</li><li>Linux · Docker</li><li>Hosting · Domains</li><li>Cybersecurity Tools</li></ul></div>
+        <div><h3 data-i18n="c3">الذكاء الاصطناعي والأتمتة</h3><ul><li>Local AI Models</li><li>APIs</li><li>Video &amp; Audio Automation</li></ul></div>
+        <div><h3 data-i18n="c4">التصميم والنمو</h3><ul><li>UI / UX</li><li>Adobe</li><li>Technical SEO</li><li>GSC · GA4</li></ul></div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="sh"><h2 data-i18n="sec_about">نبذة</h2><span class="mono" style="color:var(--mu)">ABOUT</span></div>
+      <div class="about rv">
+        <h2 data-i18n="ab_h">المقياس عندي هو ما يعمل فعلاً بين أيدي الناس.</h2>
+        <div>
+          <p data-i18n="ab_p1">طريقي في البرمجة لم يبدأ من قاعة دراسية، بل من مشاكل حقيقية تحتاج إلى حل. أتعلم ما يتطلبه المشروع، أصمم بنيته، أختبره، وأتحمل مسؤوليته الكاملة حتى يصل إلى المستخدم النهائي على المتجر أو الخادم.</p>
+          <p data-i18n="ab_p2">أتعامل مع الذكاء الاصطناعي كأداة تسريع ذكية، لا كبديل عن الفهم الهندسي. القرارات المعمارية، مراجعة الكود، وضمان الجودة والأداء هي مسؤوليتي المباشرة. والأعمال المعروضة هنا متاحة للتجربة—فالحكم دائماً للمنتج النهائي.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="sh"><h2 data-i18n="sec_contact">تواصل</h2><span class="mono" style="color:var(--mu)">CONTACT</span></div>
+      <div class="rv">
+        <h2 data-i18n="ct_h">عندك مشروع؟ راسلني.</h2>
+        <div class="mail">
+          <a class="addr" href="mailto:ammar.krsan@gmail.com" id="em">ammar.krsan@gmail.com</a>
+          <button class="btn" type="button" id="cp" data-i18n="copy_btn">نسخ البريد</button>
+        </div>
+        <div class="links">
+          <a href="https://github.com/coder-ammar" target="_blank" rel="noopener"><span>GitHub</span><svg viewBox="0 0 24 24"><path d="M17 17L7 7M16 7H7v9"/></svg></a>
+          <a href="https://play.google.com/store/apps/developer?id=AbuIbrahem" target="_blank" rel="noopener"><span>Google Play</span><svg viewBox="0 0 24 24"><path d="M17 17L7 7M16 7H7v9"/></svg></a>
+        </div>
+      </div>
+      <footer><span>© <span id="yr">2026</span> <span data-i18n="brand">عمار خيري</span></span><span class="mono">SYRIA</span></footer>
+    </section>
+  </div>
+</main>
+<div id="toast" role="status" aria-live="polite" data-i18n="copied">تم نسخ البريد</div>
+
+<script>
+(function(){
+  var d=document,r=d.documentElement;
+  function $(i){return d.getElementById(i)}
+  $("yr").textContent=new Date().getFullYear();
+
+  /* --- 1. Bilingual Dictionary (AR / EN) --- */
+  var dict={
+    ar:{
+      title:"عمار خيري — مطوّر برمجيات: تطبيقات، ألعاب، ذكاء اصطناعي، ويب",
+      brand:"عمار خيري",
+      nav_works:"الأعمال",nav_stack:"القدرات",nav_about:"نبذة",nav_contact:"تواصل",
+      status:"متاح للعمل والمشاريع",
+      hero_h1:"أبني المنتج كاملاً، من الفكرة حتى <em>المتجر</em>.",
+      hero_lede:"مطوّر برمجيات متعدد التخصصات. أنشر تطبيقات Android على Google Play، وأطوّر ألعاباً ثلاثية الأبعاد بـ Unity، وأبني أنظمة ذكاء اصطناعي وأتمتة، وأعمل على الويب وSEO التقني.",
+      s_loc_l:"الموقع",s_loc_v:"سوريا",
+      s_foc_l:"التخصصات",s_foc_v:"تطبيقات · ألعاب · ذكاء اصطناعي · ويب",
+      s_env_l:"بيئة العمل",
+      sec_works:"أعمال مختارة",
+      p1_t:"ليرتي",p1_d:"مشكلة حقيقية بعد تغيير العملة السورية: الناس تحتاج التحويل بين الليرة القديمة والجديدة بدقة وسرعة. التطبيق مجاني، يحوّل بين العملتين، ويعرض سعر صرف الدولار مقابل الليرتين بتحديثات فورية.",
+      p2_t:"مُرتب",p2_d:"يحل فوضى التخزين والملفات المكررة بنقرة واحدة: يفرز الصور والفيديوهات والمستندات وملفات PDF تلقائياً في مجلدات، ويكشف الملفات الكبيرة لتوفير المساحة، مع فرز سريع للقطات الشاشة بالسحب للحفظ أو الحذف. خفيف ويعمل بالكامل دون إنترنت.",
+      p3_d:"لعبة بقاء ورعب ثلاثية الأبعاد للموبايل، مبنية على خط Universal Render Pipeline لتحقيق توازن بين الإضاءة والأجواء والأداء السلس على الأجهزة المحمولة.",
+      p4_t:"أتمتة دبلجة الفيديو",p4_d:"خط إنتاج برمجي يسحب الفيديوهات من منصات مختلفة، ويعالج الصوت ويدبلجه تلقائياً باستخدام نماذج الذكاء الاصطناعي، ثم يجهّز المخرجات للنشر على يوتيوب.",
+      p5_t:"باندو أدس",p5_d:"منصة سورية للإعلانات المبوّبة، تتضمن لوحة تحكم ونظام إدارة شامل ومنفصل لكل مستخدم، مع بنية SEO تقنية مهيأة للظهور في محركات البحث.",
+      sec_stack:"القدرات والمنظومة التقنية",
+      c1:"التطبيقات والألعاب",c2:"البرمجة والأنظمة",c3:"الذكاء الاصطناعي والأتمتة",c4:"التصميم والنمو",
+      sec_about:"نبذة",
+      ab_h:"المقياس عندي هو ما يعمل فعلاً بين أيدي الناس.",
+      ab_p1:"طريقي في البرمجة لم يبدأ من قاعة دراسية، بل من مشاكل حقيقية تحتاج إلى حل. أتعلم ما يتطلبه المشروع، أصمم بنيته، أختبره، وأتحمل مسؤوليته الكاملة حتى يصل إلى المستخدم النهائي على المتجر أو الخادم.",
+      ab_p2:"أتعامل مع الذكاء الاصطناعي كأداة تسريع ذكية، لا كبديل عن الفهم الهندسي. القرارات المعمارية، مراجعة الكود، وضمان الجودة والأداء هي مسؤوليتي المباشرة. والأعمال المعروضة هنا متاحة للتجربة—فالحكم دائماً للمنتج النهائي.",
+      sec_contact:"تواصل",ct_h:"عندك مشروع؟ راسلني.",copy_btn:"نسخ البريد",copied:"تم نسخ البريد"
+    },
+    en:{
+      title:"Ammar Khairy — Software Developer: Apps, Games, AI & Web",
+      brand:"Ammar Khairy",
+      nav_works:"Works",nav_stack:"Capabilities",nav_about:"About",nav_contact:"Contact",
+      status:"Available for work",
+      hero_h1:"I ship complete products, from idea to <em>store</em>.",
+      hero_lede:"Multidisciplinary software developer. I publish Android apps on Google Play, build 3D games in Unity, engineer AI automation pipelines, and craft web platforms with technical SEO.",
+      s_loc_l:"Location",s_loc_v:"Syria",
+      s_foc_l:"Focus",s_foc_v:"Apps · Games · AI · Web",
+      s_env_l:"Environment",
+      sec_works:"Selected Works",
+      p1_t:"Lirati",p1_d:"Built for a real currency transition need: fast, accurate conversion between old and new Syrian Pounds alongside live USD exchange rates. Free, lightweight, and reliable.",
+      p2_t:"Muratib",p2_d:"Solves phone storage clutter in one tap: automatically sorts photos, videos, documents, and PDFs into folders, surfaces large files, and offers swipe-to-keep/delete screenshot triage. Runs 100% offline.",
+      p3_d:"A 3D mobile survival horror game built on Unity's Universal Render Pipeline, balancing atmospheric lighting with smooth mobile performance.",
+      p4_t:"AI Video Dubbing Pipeline",p4_d:"An automated Python pipeline that fetches videos across platforms, processes and dubs audio using AI models, and prepares final outputs for YouTube publishing.",
+      p5_t:"BandoAds",p5_d:"A Syrian classifieds web platform featuring dedicated user dashboards, full listing management, and a technical SEO foundation built for search visibility.",
+      sec_stack:"Capabilities & Stack",
+      c1:"Apps & Games",c2:"Code & Systems",c3:"AI & Automation",c4:"Design & Growth",
+      sec_about:"About",
+      ab_h:"My benchmark is software that works in real hands.",
+      ab_p1:"My path into engineering didn't start in a lecture hall—it started with real problems that needed solving. I learn what the project demands, architect it, test it, and own it all the way to the store or server.",
+      ab_p2:"I use AI as a high-leverage accelerator, never as a substitute for engineering judgment. Architecture, code review, and production quality remain my direct responsibility. Everything here is live to inspect—let the work speak.",
+      sec_contact:"Contact",ct_h:"Have a project? Let's talk.",copy_btn:"Copy email",copied:"Email copied"
+    }
+  };
+
+  var curLang=r.lang==="en"?"en":"ar";
+  var lgBtn=$("lg");
+  function applyLang(l){
+    curLang=l;
+    r.lang=l;
+    r.dir=l==="en"?"ltr":"rtl";
+    d.title=dict[l].title;
+    lgBtn.textContent=l==="en"?"ع":"EN";
+    d.querySelectorAll("[data-i18n]").forEach(function(el){
+      var k=el.getAttribute("data-i18n");
+      if(dict[l][k])el.textContent=dict[l][k];
+    });
+    d.querySelectorAll("[data-i18n-html]").forEach(function(el){
+      var k=el.getAttribute("data-i18n-html");
+      if(dict[l][k])el.innerHTML=dict[l][k];
+    });
+    try{localStorage.setItem("lang",l)}catch(e){}
+    setTimeout(moveNavInd,60);
+  }
+  applyLang(curLang);
+  lgBtn.addEventListener("click",function(){applyLang(curLang==="ar"?"en":"ar")});
+
+  /* --- 2. Theme Toggle --- */
+  $("tg").addEventListener("click",function(){
+    var dark=r.getAttribute("data-theme")!=="light";
+    var n=dark?"light":"dark";
+    r.setAttribute("data-theme",n);
+    try{localStorage.setItem("theme",n)}catch(e){}
+  });
+
+  /* --- 3. Off-Canvas Mobile Sidebar --- */
+  var mb=$("mb"),cl=$("cl"),dr=$("dr"),bd=$("bd");
+  function openMenu(){
+    dr.classList.add("open");bd.classList.add("open");d.body.classList.add("lock");
+    mb.setAttribute("aria-expanded","true");dr.setAttribute("aria-hidden","false");
+  }
+  function closeMenu(){
+    dr.classList.remove("open");bd.classList.remove("open");d.body.classList.remove("lock");
+    mb.setAttribute("aria-expanded","false");dr.setAttribute("aria-hidden","true");
+  }
+  mb.addEventListener("click",openMenu);
+  cl.addEventListener("click",closeMenu);
+  bd.addEventListener("click",closeMenu);
+  dr.addEventListener("click",function(e){if(e.target.closest("a"))closeMenu()});
+  d.addEventListener("keydown",function(e){if(e.key==="Escape")closeMenu()});
+
+  /* --- 4. Magnetic Sliding Nav Indicator & Scroll Spy --- */
+  var dnav=$("dnav"),nind=$("nind"),navLinks=[].slice.call(dnav.querySelectorAll("a"));
+  var activeLink=navLinks[0],hoveredLink=null;
+  function moveNavInd(target){
+    var el=target||hoveredLink||activeLink;
+    if(!el||dnav.offsetParent===null)return;
+    nind.style.width=el.offsetWidth+"px";
+    nind.style.transform="translate3d("+el.offsetLeft+"px,-50%,0)";
+    nind.classList.add("show");
+  }
+  navLinks.forEach(function(a){
+    a.addEventListener("mouseenter",function(){hoveredLink=a;moveNavInd(a)});
+    a.addEventListener("focus",function(){hoveredLink=a;moveNavInd(a)});
+  });
+  dnav.addEventListener("mouseleave",function(){hoveredLink=null;moveNavInd()});
+  window.addEventListener("resize",function(){moveNavInd()});
+
+  var secs=["works","stack","about","contact"].map(function(id){return $(id)}).filter(Boolean);
+  if("IntersectionObserver" in window){
+    var spy=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          var id="#"+e.target.id;
+          navLinks.forEach(function(a){
+            var m=a.getAttribute("href")===id;
+            a.classList.toggle("active",m);
+            if(m)activeLink=a;
+          });
+          if(!hoveredLink)moveNavInd();
+        }
+      });
+    },{rootMargin:"-35% 0px -55% 0px"});
+    secs.forEach(function(s){spy.observe(s)});
+  }
+
+  /* Scroll Progress Hairline */
+  var prog=$("prog");
+  function onScroll(){
+    var h=d.documentElement.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    prog.style.transform="scaleX("+p+")";
+  }
+  window.addEventListener("scroll",onScroll,{passive:true});
+  onScroll();
+
+  /* --- 5. Copy Email Toast --- */
+  var t=$("toast"),tm;
+  function toast(m){t.textContent=m;t.classList.add("on");clearTimeout(tm);tm=setTimeout(function(){t.classList.remove("on")},2200)}
+  $("cp").addEventListener("click",function(){
+    var v="ammar.krsan@gmail.com";
+    function ok(){toast(dict[curLang].copied)}
+    function fb(){var a=d.createElement("textarea");a.value=v;a.style.position="fixed";a.style.opacity="0";d.body.appendChild(a);a.select();try{d.execCommand("copy");ok()}catch(e){toast(v)}d.body.removeChild(a)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(v).then(ok,fb)}else{fb()}
+  });
+
+  /* --- 6. Scroll Reveal --- */
+  var els=d.querySelectorAll(".rv");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    els.forEach(function(e){io.observe(e)});
+  }else{els.forEach(function(e){e.classList.add("in")})}
+
+  /* --- 7. Architectural Engineering Grid Canvas --- */
+  var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var cv=$("bg-grid");
+  if(cv&&!reduce){
+    var ctx=cv.getContext("2d"),W=0,H=0,dpr=1,step=52;
+    var mx=-999,my=-999,pulses=[],raf=0;
+    function resize(){
+      dpr=Math.min(window.devicePixelRatio||1,2);
+      W=window.innerWidth;H=window.innerHeight;
+      cv.width=W*dpr;cv.height=H*dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function spawnPulse(){
+      var horiz=Math.random()>.5;
+      var cols=Math.ceil(W/step),rows=Math.ceil(H/step);
+      pulses.push({
+        horiz:horiz,
+        x:horiz?(Math.random()>.5?-80:W+80):Math.floor(Math.random()*cols)*step,
+        y:horiz?Math.floor(Math.random()*rows)*step:(Math.random()>.5?-80:H+80),
+        dir:Math.random()>.5?1:-1,
+        speed:1.2+Math.random()*1.4,
+        len:48+Math.random()*56
+      });
+    }
+    for(var i=0;i<5;i++)spawnPulse();
+    window.addEventListener("pointermove",function(e){mx=e.clientX;my=e.clientY},{passive:true});
+    window.addEventListener("pointerleave",function(){mx=-999;my=-999});
+    window.addEventListener("resize",resize);
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      var light=r.getAttribute("data-theme")==="light";
+      var baseCol=light?"rgba(17,17,17,0.065)":"rgba(242,242,238,0.055)";
+      var accRgb=light?"196,69,42":"232,93,63";
+
+      /* Subtle coordinate crosshairs + cursor proximity glow */
+      for(var x=0;x<W;x+=step){
+        for(var y=0;y<H;y+=step){
+          var dx=x-mx,dy=y-my,dist=Math.sqrt(dx*dx+dy*dy);
+          if(dist<170){
+            var k=1-dist/170;
+            ctx.fillStyle="rgba("+accRgb+","+(0.12+k*0.45)+")";
+            ctx.fillRect(x-1,y-1,2.2,2.2);
+          }else{
+            ctx.fillStyle=baseCol;
+            ctx.fillRect(x-.5,y-.5,1.2,1.2);
+          }
+        }
+      }
+
+      /* Quiet circuit/data signal pulses gliding along grid tracks */
+      for(var j=pulses.length-1;j>=0;j--){
+        var p=pulses[j];
+        if(p.horiz){
+          p.x+=p.speed*p.dir;
+          var g=ctx.createLinearGradient(p.x,p.y,p.x-p.len*p.dir,p.y);
+          g.addColorStop(0,"rgba("+accRgb+",0.38)");
+          g.addColorStop(1,"rgba("+accRgb+",0)");
+          ctx.strokeStyle=g;ctx.lineWidth=1;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x-p.len*p.dir,p.y);ctx.stroke();
+          if(p.x<-150||p.x>W+150){pulses.splice(j,1);spawnPulse();}
+        }else{
+          p.y+=p.speed*p.dir;
+          var g2=ctx.createLinearGradient(p.x,p.y,p.x,p.y-p.len*p.dir);
+          g2.addColorStop(0,"rgba("+accRgb+",0.38)");
+          g2.addColorStop(1,"rgba("+accRgb+",0)");
+          ctx.strokeStyle=g2;ctx.lineWidth=1;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p.x,p.y-p.len*p.dir);ctx.stroke();
+          if(p.y<-150||p.y>H+150){pulses.splice(j,1);spawnPulse();}
+        }
+      }
+      raf=requestAnimationFrame(draw);
+    }
+    d.addEventListener("visibilitychange",function(){
+      if(d.hidden)cancelAnimationFrame(raf);else raf=requestAnimationFrame(draw);
+    });
+    raf=requestAnimationFrame(draw);
+  }
+})();
+</script>
+</body>
+</html>
